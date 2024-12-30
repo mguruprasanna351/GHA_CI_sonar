@@ -22,7 +22,7 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm i
+      run: npm ci
 
     - name: Run tests
       run: npm test
@@ -32,6 +32,7 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      if: env.SONAR_TOKEN != '' && env.SONAR_HOST_URL != ''
 
     - name: Build and package application
       run: |
@@ -39,6 +40,7 @@ jobs:
         mv *.tgz artifact.tgz
 
     - name: Publish to Nexus
+      if: github.ref == 'refs/heads/main'
       run: |
         curl -v -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
           --upload-file artifact.tgz \
