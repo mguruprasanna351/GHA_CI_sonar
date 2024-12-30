@@ -1,0 +1,25 @@
+{
+  "name": "node-api-with-ci",
+  "version": "1.0.0",
+  "description": "Node.js API with CI pipeline",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "sonar": "sonar-scanner"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.2",
+    "sonarqube-scanner": "^3.3.0"
+  }
+}
